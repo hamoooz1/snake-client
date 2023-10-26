@@ -13,13 +13,19 @@ const connect = () => {
   conn.on("connect", () => {
     console.log( "Successfully connected to game server")
   })
+
   //taking message from server
   conn.on("data", (data) => console.log(data));
+
   //put a name
   conn.on("connect", () => {
     conn.write("Name: HRK");
   });
-  return conn;
+  
+  conn.on("connect", () => {
+    conn.write("Move: down");
+  }); 
+  return conn;  
 };
 
 module.exports = {connect};
