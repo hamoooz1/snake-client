@@ -8,9 +8,17 @@ const connect = () => {
   });
 
   conn.setEncoding("utf8");
-
-  conn.on("data", (data) => console.log(data)); // ES6 shorthand for arrow function
-
+  
+  //shows connection went through
+  conn.on("connect", () => {
+    console.log( "Successfully connected to game server")
+  })
+  //taking message from server
+  conn.on("data", (data) => console.log(data));
+  //put a name
+  conn.on("connect", () => {
+    conn.write("Name: HRK");
+  });
   return conn;
 };
 
